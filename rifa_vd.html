@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fullscreen Video Player</title>
+</head>
+
+<body>
+
+    <video id="fullscreenVideo" controls>
+        <source src="rifa.MOV" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var video = document.getElementById('fullscreenVideo');
+
+            // Ensure the video is loaded before attempting to play
+            video.addEventListener('loadedmetadata', function () {
+                // Trigger fullscreen when the video is loaded
+                video.requestFullscreen = video.requestFullscreen || video.mozRequestFullScreen || video.webkitRequestFullscreen || video.msRequestFullscreen;
+                video.requestFullscreen();
+
+                // Play the video
+                video.play();
+
+                // Adjust video size to fit the screen
+                adjustVideoSize();
+            });
+
+            // Listen for changes in screen size and adjust video size accordingly
+            window.addEventListener('resize', adjustVideoSize);
+
+            function adjustVideoSize() {
+                var screenWidth = window.innerWidth;
+                var screenHeight = window.innerHeight;
+
+                // Set the video dimensions to match the screen size
+                video.style.width = screenWidth + 'px';
+                video.style.height = screenHeight + 'px';
+            }
+        });
+    </script>
+</body>
+
+</html>

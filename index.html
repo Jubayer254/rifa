@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moon Touch</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: radial-gradient(ellipse at center, rgba(30, 30, 30, 1) 0%, rgba(0, 0, 0, 1) 100%);
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #moon {
+            width: 400px;
+            height: 400px;
+            background: url('moon.png') no-repeat center center;
+            background-size: cover;
+            border-radius: 50%;
+            animation: rotate 30s infinite linear;
+            cursor: pointer;
+        }
+
+        #stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            background: #fff;
+            opacity: 0.8;
+            animation: twinkle 2s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                transform: scale(1.2);
+            }
+            50% {
+                transform: scale(0.8);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        #moon-button {
+            position: absolute;
+            bottom: 100px;
+            padding: 10px 20px;
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid #fff; /* Bright border */
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #moon-button:hover {
+            background-color: #fff; /* Bright background on hover */
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="moon-container">
+        <div id="moon"></div>
+        <div id="stars"></div>
+    </div>
+    <button id="moon-button">Click here to see me</button>
+    <script>
+        // Dynamically generate and append stars using JavaScript
+        $(document).ready(function () {
+            const starsContainer = $('#stars');
+
+            for (let i = 1; i <= 100; i++) {
+                const star = $('<div class="star"></div>');
+                star.css({
+                    top: Math.random() * 100 + '%',
+                    left: Math.random() * 100 + '%'
+                });
+                starsContainer.append(star);
+            }
+
+            $('#moon-button').on('click', function () {
+                console.log("Moon button clicked");
+                redirectToAnotherPage();
+            });
+        });
+
+        function redirectToAnotherPage() {
+            console.log("Redirecting...");
+            // Change the URL to the desired destination
+            window.location.href = 'rifa_vd.html'; // Replace with your actual URL
+        }
+    </script>
+</body>
+
+</html>
